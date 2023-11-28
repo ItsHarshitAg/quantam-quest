@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Science Fest Registration</title>
+    <link href="styles.css" rel="stylesheet">
+</head>
+<body>
+    <div class="header">
+        <img src="banner.png" alt="science fest">
+    </div>
+    <div class="navbar">
+        <a href="sciencefest.html">Registration</a>
+    </div>
+    <div class="container">
+        <div class="registration-form">  
+            <h2>Science Fest Registration</h2>
+            <form onsubmit="event.preventDefault(); register();">
+                <label for="name">Name:</label>
+                <input type="text" id="name" required><br>
+
+                <label for="email">Email:</label>
+                <input type="email" id="email" required><br>
+
+                <label for="country">Country:</label>
+                <select id="country" required>
+                    <option value="India">India</option>
+                    <option value="United States">United States</option>
+                    <option value="United Kingdom">United Kingdom</option>
+                    <option value="Canada">Canada</option>
+                </select><br>
+
+                <label for="participant-type">Participant Type:</label>
+                <select id="participant-type" required>
+                    <option value="student">Student</option>
+                    <option value="faculty">Faculty Member</option>
+                    <option value="professional">Professional</option>
+                    <option value="company">Company/Firm Representative</option>
+                </select><br>
+ 
+                <label for="currency">Currency:</label>
+                <select id="currency" required>
+                    <option value="rupees">Rupees</option>
+                    <option value="dollars">Dollars</option>
+                </select><br>
+
+                <label for="payment-method">Payment Method:</label>
+                <select id="payment-method" required>
+                    <option value="credit-card">Credit Card</option>
+                    <option value="debit-card">Debit Card</option>
+                    <option value="demand-draft">Demand Draft</option>
+                </select><br>
+
+                <label for="hotel-choice">Hotel Choice:</label>
+                <select id="hotel-choice" required>
+                    <option value="Hotel Octave">Octave Hotel</option>
+                    <option value="Hotel Modern">Modern Hotel</option>
+                    <option value="Ritz Hotel">The Ritz</option>
+                    <option value="The Grand">The Grand</option>
+                </select><br>
+            
+                <div class="services-container">
+                    <h3>Additional Services in Hotel</h3>
+                    <p class="service-description">Carries extra charge</p>
+                    <div class="form-group">
+                        <input type="checkbox" id="Ser1">
+                        <label for="Ser1">Airport transfers</label>
+                        <p class="service-description">Transportation to and from the airport.</p>
+                    </div>
+                    <div class="form-group">
+                        <input type="checkbox" id="Ser2">
+                        <label for="Ser2">Tour and activity</label>
+                        <p class="service-description">Assistance in booking tours and activities in the local area.</p>
+                    </div>
+                    <div class="form-group">
+                        <input type="checkbox" id="Ser3">
+                        <label for="Ser3">Laundry and dry cleaning</label>
+                        <p class="service-description">Laundry and dry cleaning services for guests' clothing.</p>
+                    </div>
+                    <div class="form-group">
+                        <input type="checkbox" id="Ser4">
+                        <label for="Ser4">Food</label>
+                        <p class="service-description">Food services for Participants</p>
+                    </div>
+                    <div class="form-group">
+                        <input type="checkbox" id="Ser5">
+                        <label for="Ser5">Currency Exchange</label>
+                        <p class="service-description">A currency exchange service where guests can exchange their currency for the local currency.</p>
+                    </div>
+                </div>
+
+                <div class="services-container">
+                    <h3>Optional Services:</h3>
+                    <div class="form-group">
+                        <input type="checkbox" id="workshop">
+                        <label for="workshop">Workshop</label>
+                        <p class="service-description">Join our interactive workshops to enhance yourlearning experience.</p>
+                    </div>
+                    <div class="form-group">
+                        <input type="checkbox" id="presentation">
+                        <label for="presentation">Presentation</label>
+                        <p class="service-description">Get a chance to present your research or project at the conference.</p>
+                    </div>
+                </div>
+
+                <button type="submit">Register</button>
+            </form>
+        </div>
+    </div>
+    <script>
+        function register() {
+            var name = document.getElementById("name").value;
+            var email = document.getElementById("email").value;
+            var country = document.getElementById("country").value;
+            var participantType = document.getElementById("participant-type").value;
+            var registrationFee =0;
+            var currency = document.getElementById("currency").value;
+            var paymentMethod = document.getElementById("payment-method").value;
+            var hotelChoice = document.getElementById("hotel-choice").value;
+            var workshopChecked = document.getElementById("workshop").checked;
+            var presentationChecked = document.getElementById("presentation").checked;
+            var Ser1Checked = document.getElementById("Ser1").checked;
+            var Ser2Checked = document.getElementById("Ser2").checked;
+            var Ser3Checked = document.getElementById("Ser3").checked;
+            var Ser4Checked = document.getElementById("Ser4").checked;
+            var Ser5Checked = document.getElementById("Ser5").checked;
+
+            switch(participantType){
+                case "student":
+                    registrationFee = 1000;
+                    break;
+                case "faculty":
+                    registrationFee = 1500;
+                    break;
+                case "professional":
+                    registrationFee = 2000;
+                    break;
+                case "company":
+                    registrationFee = 2500;
+                    break;
+            }
+            if (workshopChecked) {
+                registrationFee = parseInt(registrationFee) + 100;
+            }
+            if (presentationChecked) {
+                registrationFee = parseInt(registrationFee) + 50;
+            }
+            if(Ser1Checked){
+                registrationFee = parseInt(registrationFee) + 1500;
+            }
+            if(Ser2Checked){
+                registrationFee = parseInt(registrationFee) + 500;
+            }
+            if(Ser3Checked){
+                registrationFee = parseInt(registrationFee) + 500;
+            }
+            if(Ser4Checked){
+                registrationFee = parseInt(registrationFee) + 500;
+            }
+            if(Ser5Checked){
+                registrationFee = parseInt(registrationFee) + 500;
+            }
+            //if payment is in dollars convert the following in dollar
+            if(currency == "dollars"){
+                registrationFee = parseInt(registrationFee) * 0.0125;
+            }
+
+            const detailsElement = document.createElement("div");
+            detailsElement.classList.add("registration-details");
+            detailsElement.innerHTML = `
+                <h1 style="color:yellow;">Thank you, ${name}!</h1>
+                <p style="color: white;">Your registration for the Science Fest has been confirmed.</p>
+                <p style="color: white;">Here are your registration details:</p>
+                <ul>
+                    <li style="color: white;">Name: ${name}</li>
+                    <li style="color: white;">Email: ${email}</li>
+                    <li style="color: white;">Country: ${country}</li>
+                    <li style="color: white;">Participant Type: ${participantType}</li>
+                    <li style="color: white;">Registration Fee: ${registrationFee} ${currency}</li>
+                    <li style="color: white;">Payment Method: ${paymentMethod}</li>
+                    <li style="color: white;">Hotel Choice: ${hotelChoice}</li>
+                    <li style="color: white;">Additional Services: </li>
+                    <ul>
+                        <li style="color: white;">Airport transfers: ${Ser1Checked ? "Yes" : "No"}</li>
+                        <li style="color: white;">Tour and activity: ${Ser2Checked ? "Yes" : "No"}</li>
+                        <li style="color: white;">Laundry and dry cleaning: ${Ser3Checked ? "Yes" : "No"}</li>
+                        <li style="color: white;">Food: ${Ser4Checked ? "Yes" : "No"}</li>
+                        <li style="color: white;">Currency Exchange: ${Ser5Checked ? "Yes" : "No"}</li>
+                        <li style="color: white;">Workshop: ${workshopChecked ? "Yes" : "No"}</li>
+                        <li style="color: white;">Presentation: ${presentationChecked ? "Yes" : "No"}</li>
+                     </ul>`;
+
+            // Append the detailsElement to the document
+            const container = document.querySelector(".container");
+            container.appendChild(detailsElement);
+        }
+    </script>
+</body>
+</html>
